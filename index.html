@@ -1,0 +1,998 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#1e3a5f">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>Get-Together and Anniversary 🌲 Hochatown Weekend</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: #f5f1e8;
+    color: #2c2c2a;
+    line-height: 1.6;
+    padding-bottom: 40px;
+  }
+  .hero {
+    background: linear-gradient(135deg, #1e3a5f 0%, #2a5274 50%, #3b6d11 100%);
+    color: white;
+    padding: 60px 24px 70px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-image:
+      radial-gradient(circle at 20% 20%, rgba(255,255,255,0.06) 0%, transparent 50%),
+      radial-gradient(circle at 80% 80%, rgba(255,255,255,0.04) 0%, transparent 50%);
+  }
+  .hero-content { position: relative; z-index: 1; }
+  .badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(10px);
+    padding: 6px 16px;
+    border-radius: 30px;
+    font-size: 11px;
+    letter-spacing: 2px;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    border: 1px solid rgba(255,255,255,0.2);
+  }
+  h1 {
+    font-size: 38px;
+    font-weight: 800;
+    margin-bottom: 8px;
+    letter-spacing: -1px;
+    line-height: 1.1;
+  }
+  .subtitle {
+    font-size: 16px;
+    opacity: 0.85;
+    font-weight: 300;
+    margin-bottom: 24px;
+  }
+  .farewell-note {
+    background: rgba(255,255,255,0.12);
+    padding: 16px 20px;
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.2);
+    margin-top: 20px;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+  .farewell-note strong { font-weight: 600; }
+  .meta-strip {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    margin-top: 28px;
+    flex-wrap: wrap;
+    font-size: 13px;
+    opacity: 0.9;
+  }
+  .meta-item { display: flex; align-items: center; gap: 6px; }
+
+  .container {
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 0 16px;
+  }
+  .section {
+    margin-top: 32px;
+  }
+  .section-title {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #5f5e5a;
+    margin-bottom: 14px;
+    padding-left: 4px;
+  }
+  .card {
+    background: white;
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.03);
+    margin-bottom: 16px;
+  }
+  .card h2 {
+    font-size: 22px;
+    font-weight: 700;
+    color: #1e3a5f;
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .card h3 {
+    font-size: 16px;
+    font-weight: 600;
+    color: #2c2c2a;
+    margin: 16px 0 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .card p { font-size: 14px; color: #444; margin-bottom: 8px; }
+
+  /* Departure groups */
+  .group-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 12px;
+    margin-top: 16px;
+  }
+  .group-card {
+    background: #f9f6ef;
+    border-radius: 12px;
+    padding: 16px;
+    border-left: 4px solid #1e3a5f;
+  }
+  .group-card.point-b { border-left-color: #d97706; }
+  .group-card.point-c { border-left-color: #3b6d11; }
+  .group-card .label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #5f5e5a;
+    margin-bottom: 4px;
+  }
+  .group-card .city {
+    font-size: 17px;
+    font-weight: 700;
+    color: #1e3a5f;
+    margin-bottom: 6px;
+  }
+  .group-card.point-b .city { color: #d97706; }
+  .group-card.point-c .city { color: #3b6d11; }
+  .group-card .names { font-size: 13px; color: #444; line-height: 1.5; }
+  .group-card .meta {
+    margin-top: 8px;
+    padding-top: 8px;
+    border-top: 1px dashed #d3d1c7;
+    font-size: 12px;
+    color: #5f5e5a;
+  }
+
+  /* Day timeline */
+  .day-header {
+    background: linear-gradient(90deg, var(--day-color) 0%, var(--day-color-light) 100%);
+    color: white;
+    padding: 18px 24px;
+    border-radius: 12px 12px 0 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .day-friday { --day-color: #1e3a5f; --day-color-light: #3a5a82; }
+  .day-saturday { --day-color: #3b6d11; --day-color-light: #5a8c2a; }
+  .day-sunday { --day-color: #b45309; --day-color-light: #d97706; }
+  .day-monday { --day-color: #7c2d12; --day-color-light: #a23818; }
+  .day-header h2 {
+    font-size: 24px;
+    font-weight: 800;
+    color: white;
+    margin: 0;
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .day-header h2 .date-pill {
+    background: rgba(255,255,255,0.2);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+  .day-header .date { font-size: 13px; opacity: 0.9; }
+  .day-tagline {
+    background: rgba(0,0,0,0.15);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 500;
+  }
+  .day-body {
+    background: white;
+    border-radius: 0 0 12px 12px;
+    padding: 20px 24px 24px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.03);
+    margin-bottom: 20px;
+  }
+
+  .timeline-item {
+    display: flex;
+    gap: 14px;
+    padding: 12px 0;
+    border-bottom: 1px dashed #e8e4d8;
+  }
+  .timeline-item:last-child { border-bottom: none; }
+  .timeline-time {
+    flex-shrink: 0;
+    width: 92px;
+    font-size: 12px;
+    font-weight: 700;
+    color: #1e3a5f;
+    padding-top: 2px;
+  }
+  .timeline-content { flex: 1; }
+  .timeline-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: #2c2c2a;
+    margin-bottom: 3px;
+  }
+  .timeline-desc { font-size: 13px; color: #5f5e5a; line-height: 1.5; }
+  .timeline-tag {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin-right: 4px;
+    margin-top: 4px;
+    letter-spacing: 0.5px;
+  }
+  .tag-veg { background: #eaf3de; color: #3b6d11; }
+  .tag-halal { background: #faeeda; color: #854f0b; }
+  .tag-kids { background: #fbeaf0; color: #993556; }
+  .tag-adult { background: #e6f1fb; color: #185fa5; }
+  .tag-must { background: #fcebeb; color: #a32d2d; }
+
+  /* Split groups */
+  .split-box {
+    background: #fef9f0;
+    border: 2px dashed #d97706;
+    border-radius: 12px;
+    padding: 16px;
+    margin: 12px 0;
+  }
+  .split-box .split-label {
+    display: inline-block;
+    background: #d97706;
+    color: white;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    padding: 3px 10px;
+    border-radius: 20px;
+    margin-bottom: 10px;
+  }
+  .split-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 12px;
+    margin-top: 8px;
+  }
+  .split-option {
+    background: white;
+    padding: 12px;
+    border-radius: 8px;
+    border-left: 3px solid #d97706;
+  }
+  .split-option .split-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: #1e3a5f;
+    margin-bottom: 4px;
+  }
+
+  /* Food section */
+  .food-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 12px;
+  }
+  .food-card {
+    background: #f9f6ef;
+    padding: 14px;
+    border-radius: 10px;
+  }
+  .food-card .food-name {
+    font-size: 14px;
+    font-weight: 700;
+    color: #1e3a5f;
+    margin-bottom: 4px;
+  }
+  .food-card .food-detail { font-size: 12px; color: #5f5e5a; line-height: 1.4; }
+
+  /* Highlights */
+  .highlight {
+    background: linear-gradient(135deg, #fef9f0 0%, #fff 100%);
+    border: 1px solid #f0c896;
+    border-radius: 12px;
+    padding: 14px 18px;
+    margin: 12px 0;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  .highlight-icon { font-size: 20px; flex-shrink: 0; }
+  .highlight-text { font-size: 13px; color: #2c2c2a; line-height: 1.5; }
+
+  /* Packing list */
+  .packing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 8px;
+    margin-top: 10px;
+  }
+  .pack-item {
+    background: #f9f6ef;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .pack-item::before {
+    content: '☐';
+    color: #1e3a5f;
+    font-weight: bold;
+  }
+
+  /* Numbers */
+  .stat-strip {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 10px;
+    margin-top: 16px;
+  }
+  .stat {
+    text-align: center;
+    padding: 14px 8px;
+    background: #f9f6ef;
+    border-radius: 10px;
+  }
+  .stat-number {
+    font-size: 26px;
+    font-weight: 800;
+    color: #1e3a5f;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .stat-label {
+    font-size: 10px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #5f5e5a;
+    font-weight: 600;
+  }
+
+  /* Polish */
+  .emoji { font-style: normal; }
+  .footer {
+    text-align: center;
+    padding: 30px 20px 10px;
+    color: #5f5e5a;
+    font-size: 12px;
+  }
+  .footer strong { color: #1e3a5f; font-weight: 700; }
+  @media (max-width: 900px) {
+    h1 { font-size: 32px; letter-spacing: -0.5px; }
+    .hero { padding: 44px 18px 50px; }
+    .subtitle { font-size: 15px; }
+    .meta-strip { gap: 14px 18px; font-size: 12px; }
+    .container { padding: 0 12px; }
+    .card { padding: 20px 18px; }
+    .card h2 { font-size: 19px; }
+    .card h3 { font-size: 15px; }
+    .group-card .city { font-size: 16px; }
+    .day-body { padding: 18px 18px 20px; }
+  }
+
+  @media (max-width: 600px) {
+    body { padding-bottom: 24px; }
+    h1 { font-size: 26px; line-height: 1.15; }
+    .hero { padding: 32px 16px 38px; }
+    .subtitle { font-size: 14px; margin-bottom: 18px; }
+    .badge { font-size: 10px; letter-spacing: 1.5px; padding: 5px 14px; }
+    .farewell-note { padding: 14px 16px; font-size: 13px; line-height: 1.5; margin-top: 16px; }
+    .meta-strip { gap: 10px 14px; font-size: 11.5px; margin-top: 20px; }
+    .container { padding: 0 10px; }
+    .section { margin-top: 22px; }
+    .section-title { font-size: 11px; letter-spacing: 1.5px; margin-bottom: 10px; }
+    .card { padding: 16px 14px; border-radius: 14px; margin-bottom: 12px; }
+    .card h2 { font-size: 17px; gap: 8px; margin-bottom: 4px; }
+    .card h3 { font-size: 14px; margin: 14px 0 6px; }
+    .card p { font-size: 13px; }
+
+    /* Force all multi-column grids to single column on phones */
+    .group-grid,
+    .food-grid,
+    .split-grid { grid-template-columns: 1fr !important; gap: 10px; }
+    .packing-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 6px; }
+    .stat-strip { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+
+    .group-card { padding: 14px; }
+    .group-card .city { font-size: 15px; }
+    .group-card .names { font-size: 12.5px; }
+    .group-card .meta { font-size: 11px; }
+    .group-card .label { font-size: 9px; }
+
+    .day-header { padding: 14px 16px; flex-direction: column; align-items: flex-start; gap: 6px; }
+    .day-header h2 { font-size: 19px; gap: 8px; }
+    .day-header h2 .date-pill { font-size: 11px; padding: 3px 10px; }
+    .day-tagline { font-size: 11px; padding: 3px 10px; }
+    .day-body { padding: 14px 14px 16px; border-radius: 0 0 14px 14px; }
+
+    .timeline-item { padding: 10px 0; gap: 10px; flex-direction: column; }
+    .timeline-time {
+      width: auto;
+      font-size: 11px;
+      padding: 3px 10px;
+      background: #1e3a5f;
+      color: white;
+      border-radius: 12px;
+      display: inline-block;
+      align-self: flex-start;
+    }
+    .timeline-title { font-size: 13.5px; }
+    .timeline-desc { font-size: 12.5px; line-height: 1.5; }
+    .timeline-tag { font-size: 9px; padding: 2px 7px; }
+
+    .split-box { padding: 14px; margin: 10px 0; }
+    .split-option { padding: 12px; }
+    .split-option .split-title { font-size: 12.5px; }
+    .split-option p { font-size: 11.5px !important; }
+
+    .food-card { padding: 12px; }
+    .food-card .food-name { font-size: 13px; }
+    .food-card .food-detail { font-size: 11.5px; line-height: 1.5; }
+
+    .pack-item { font-size: 11px; padding: 7px 10px; }
+    .stat { padding: 12px 6px; }
+    .stat-number { font-size: 22px; }
+    .stat-label { font-size: 9px; }
+
+    .highlight { padding: 12px 14px; gap: 10px; }
+    .highlight-icon { font-size: 18px; }
+    .highlight-text { font-size: 12.5px; line-height: 1.5; }
+
+    .footer { padding: 24px 16px 8px; font-size: 11.5px; }
+  }
+
+  @media (max-width: 380px) {
+    h1 { font-size: 23px; }
+    .hero { padding: 28px 14px 32px; }
+    .farewell-note { font-size: 12.5px; padding: 12px 14px; }
+    .card { padding: 14px 12px; }
+    .container { padding: 0 8px; }
+    .packing-grid { grid-template-columns: 1fr !important; }
+    .stat-strip { grid-template-columns: 1fr 1fr; }
+    .timeline-title { font-size: 13px; }
+    .timeline-desc { font-size: 12px; }
+  }
+
+  /* Touch targets — make tappable areas friendlier */
+  @media (hover: none) and (pointer: coarse) {
+    .pack-item, .food-card, .group-card { -webkit-tap-highlight-color: transparent; }
+  }
+
+  /* Prevent any horizontal scroll */
+  html, body { overflow-x: hidden; max-width: 100vw; }
+  img, .card, .day-header, .day-body { max-width: 100%; }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-content">
+    <div class="badge">🌲 March 5–8, 2027 · Anniversary Edition</div>
+    <h1>Get-Together and Anniversary 🎉</h1>
+    <p class="subtitle">A Hochatown weekend to celebrate Abhishek & Lavanya's anniversary in style</p>
+    <div class="meta-strip">
+      <div class="meta-item">🏕️ Tipsy Bear Cabin</div>
+      <div class="meta-item">👥 16–17 of us</div>
+      <div class="meta-item">🚗 3 cities converging</div>
+      <div class="meta-item">🌳 Broken Bow, OK</div>
+    </div>
+    <div class="farewell-note">
+      💍 <strong>This trip is for Abhishek & Lavanya</strong> — celebrating their anniversary the way it should be: surrounded by the people who love them most. Forest, BBQ, fire pit, and a whole lot of love.
+    </div>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- DEPARTURE GROUPS -->
+  <div class="section">
+    <div class="section-title">Three Roads, One Cabin</div>
+    <div class="card">
+      <h2>🚗 Departure groups</h2>
+      <p style="color:#5f5e5a; font-size:13px; margin-bottom:8px;">Three cars/groups, all rolling into Hochatown by Friday night for dinner and sleep.</p>
+      <div class="group-grid">
+        <div class="group-card">
+          <div class="label">Point A · Tennessee</div>
+          <div class="city">Clarksville → Hochatown</div>
+          <div class="names">Buddha Uncle & Souma Aunty</div>
+          <div class="meta">~10 hours · 605 mi · I-40 W → US-259 S</div>
+        </div>
+        <div class="group-card point-b">
+          <div class="label">Point B · Texas</div>
+          <div class="city">Dallas → Hochatown</div>
+          <div class="names">Ranjan Bhaiya & family</div>
+          <div class="meta">~3.5 hours · 200 mi · US-75 N → US-70 E</div>
+        </div>
+        <div class="group-card point-c">
+          <div class="label">Point C · Texas</div>
+          <div class="city">Houston → Hochatown</div>
+          <div class="names">Gaurav & Himani · Sajid Uncle & Sana Aunty · Abhishek & Lavanya family · Prasad Bhaiya family · Ajay Bhaiya family</div>
+          <div class="meta">~6.5 hours · 440 mi · US-59 N → US-259 N · Leave by 4 PM · Arrive 10:30–11:30 PM</div>
+        </div>
+      </div>
+      <div class="highlight" style="margin-top:16px;">
+        <div class="highlight-icon">📍</div>
+        <div class="highlight-text"><strong>Cabin Address:</strong> 1012 Timberline Trail, Broken Bow, OK 74728 · Use <strong>Google Maps only</strong> (other apps misroute) · Host Judy: (580) 407-4007</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TRIP STATS -->
+  <div class="section">
+    <div class="card">
+      <h2>📊 Trip at a glance</h2>
+      <div class="stat-strip">
+        <div class="stat"><div class="stat-number">4</div><div class="stat-label">Days</div></div>
+        <div class="stat"><div class="stat-number">17</div><div class="stat-label">People</div></div>
+        <div class="stat"><div class="stat-number">5</div><div class="stat-label">Kids</div></div>
+        <div class="stat"><div class="stat-number">6BR</div><div class="stat-label">Cabin</div></div>
+        <div class="stat"><div class="stat-number">3</div><div class="stat-label">Activities</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FRIDAY -->
+  <div class="section">
+    <div class="section-title">Day 1 — Arrival · Friday, March 5, 2027</div>
+    <div class="day-header day-friday">
+      <h2>🚗 Friday <span class="date-pill">Mar 5, 2027</span></h2>
+      <span class="day-tagline">Drive day · settle in</span>
+    </div>
+    <div class="day-body">
+      <div class="timeline-item">
+        <div class="timeline-time">By 4 PM</div>
+        <div class="timeline-content">
+          <div class="timeline-title">Houston group departs</div>
+          <div class="timeline-desc">All Houston families convoy together. Multiple cars, share live location. Quick gas + bathroom stop near Lufkin/Nacogdoches.</div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">~7 PM</div>
+        <div class="timeline-content">
+          <div class="timeline-title">Dinner stop in Texarkana</div>
+          <div class="timeline-desc">Taste of India Bar & Grill — Indian food + attached grocery store. Last good Indian meal before cabin. Halal-friendly + lots of veg options.</div>
+          <span class="timeline-tag tag-veg">Veg ✓</span>
+          <span class="timeline-tag tag-halal">Halal ✓</span>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">10:30–11:30 PM</div>
+        <div class="timeline-content">
+          <div class="timeline-title">Arrive at Tipsy Bear</div>
+          <div class="timeline-desc">Check-in code activates 4 PM. Unload cars, claim bedrooms (6 BR, 6 BA, sleeps 19), connect to WiFi <em>Tipsy Bear Wi-Fi / 14RikaRockyJess!</em></div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">Late night</div>
+        <div class="timeline-content">
+          <div class="timeline-title">🔥 Hookah + drinks + fire pit</div>
+          <div class="timeline-desc">Light fire pit on the deck. Anyone who wants drinks/hookah — this is the night for it. Keep it mellow, neighbors expect quiet after 10 PM. S'mores for any kids still awake.</div>
+          <span class="timeline-tag tag-adult">Adults</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SATURDAY -->
+  <div class="section">
+    <div class="section-title">Day 2 — The Big Day · Saturday, March 6, 2027</div>
+    <div class="day-header day-saturday">
+      <h2>🌲 Saturday <span class="date-pill">Mar 6, 2027</span></h2>
+      <span class="day-tagline">Late start · group activities · evening at cabin</span>
+    </div>
+    <div class="day-body">
+      <div class="timeline-item">
+        <div class="timeline-time">9–11 AM</div>
+        <div class="timeline-content">
+          <div class="timeline-title">Slow morning at cabin</div>
+          <div class="timeline-desc">Everyone slept late after the drive — let's not rush. Coffee, chai, eggs/parathas at the cabin. Kids in PJs, adults on the deck. Plan the day over breakfast.</div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">11:30 AM</div>
+        <div class="timeline-content">
+          <div class="timeline-title">🍳 Brunch out — head into town</div>
+          <div class="timeline-desc">Papa Poblanos (Mexican, veg-friendly, breakfast burritos + huevos rancheros) OR Brick & Bread (cafe, flatbreads, scratch-made). Call ahead for 17.</div>
+          <span class="timeline-tag tag-veg">Veg ✓</span>
+          <span class="timeline-tag tag-halal">Halal-friendly</span>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">1–3 PM</div>
+        <div class="timeline-content">
+          <div class="timeline-title">🌿 The Maze of Hochatown <span class="timeline-tag tag-must">9/11 voted</span></div>
+          <div class="timeline-desc">Group activity #1 — 9 of 11 poll voters wanted this. Split into teams of 3-4, race through the maze finding 5 towers. Kids LOVE this. Shaded paths, water stations. ~1.5 hrs.</div>
+          <span class="timeline-tag tag-kids">Family</span>
+        </div>
+      </div>
+      <div class="split-box">
+        <div class="split-label">⚡ Split into 2 groups · 3–5:30 PM</div>
+        <p style="font-size:12px; color:#5f5e5a; margin-bottom:8px;">Different energy levels — let people pick what they want. Both groups back at cabin by 6 PM.</p>
+        <div class="split-grid">
+          <div class="split-option">
+            <div class="split-title">🪂 Adventure Crew</div>
+            <p style="font-size:12px; color:#444;">Rugaru Ziplining — 4 voters wanted this. 2.5 hr tour, lake finale.</p>
+            <p style="font-size:11px; color:#5f5e5a; margin-top:4px;">Shiveta · Hema · Lavanya · Abhishek · anyone else?</p>
+            <p style="font-size:11px; color:#a32d2d; margin-top:4px;"><strong>Book ahead:</strong> (580) 494-2947</p>
+          </div>
+          <div class="split-option">
+            <div class="split-title">🦓 Family Crew</div>
+            <p style="font-size:12px; color:#444;">Safari Park drive-through + Petting Zoo. Stay in cars, feed animals from windows.</p>
+            <p style="font-size:11px; color:#5f5e5a; margin-top:4px;">Souma Aunty · Buddha Uncle · Ranjan family · Sumitha · kids</p>
+          </div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">6 PM</div>
+        <div class="timeline-content">
+          <div class="timeline-title">🏠 Back at cabin · regroup</div>
+          <div class="timeline-desc">Hot tub for whoever's sore. Kids run around. Adults start prep.</div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">7 PM</div>
+        <div class="timeline-content">
+          <div class="timeline-title">🔥 BBQ night at the cabin</div>
+          <div class="timeline-desc">Fire up the outdoor grill. Pre-marinated paneer tikka, malai chaap, tandoori veggies, corn on the cob (pack from Houston). Halal chicken/lamb kebabs for non-veg (marinate at home). Eat outside on the deck. Simple, fun, no kitchen mess.</div>
+          <span class="timeline-tag tag-veg">Veg ✓</span>
+          <span class="timeline-tag tag-halal">Halal ✓</span>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">9 PM onwards</div>
+        <div class="timeline-content">
+          <div class="timeline-title">🎮 Game night · Abhishek leads</div>
+          <div class="timeline-desc">Abhishek bhaiya runs the show. UNO, Mafia/Werewolf, antakshari, cards, charades. Big living room with floor-to-ceiling windows. Speaker on, music going.</div>
+          <span class="timeline-tag tag-kids">Kids</span>
+          <span class="timeline-tag tag-adult">Adults</span>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">Late</div>
+        <div class="timeline-content">
+          <div class="timeline-title">🍷 Drinks + hookah + fire pit</div>
+          <div class="timeline-desc">Night 2 of the wind-down ritual. Bourbon from Hochatown Distilling if anyone wants to make a run. Stargazing — Hochatown skies are way better than Houston/Dallas.</div>
+          <span class="timeline-tag tag-adult">Adults</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SUNDAY -->
+  <div class="section">
+    <div class="section-title">Day 3 — The Anniversary · Sunday, March 7, 2027</div>
+    <div class="day-header day-sunday">
+      <h2>💍 Sunday <span class="date-pill">Mar 7, 2027</span></h2>
+      <span class="day-tagline">Anniversary day · celebration dinner</span>
+    </div>
+    <div class="day-body">
+      <div class="timeline-item">
+        <div class="timeline-time">9–10:30 AM</div>
+        <div class="timeline-content">
+          <div class="timeline-title">Lazy morning · cabin breakfast</div>
+          <div class="timeline-desc">Sleep in, coffee, parathas/eggs/cereal. Hot tub for anyone. Kids play games. Read on the deck.</div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">11 AM</div>
+        <div class="timeline-content">
+          <div class="timeline-title">🐴 Beavers Bend Depot — pony + train rides</div>
+          <div class="timeline-desc">2nd-highest vote (6 voters). Kids do pony rides + train ride. Older kids/adults can join trail rides. One spot, ~1.5 hrs, easy. ~15 min drive.</div>
+          <span class="timeline-tag tag-kids">Kids</span>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">1 PM</div>
+        <div class="timeline-content">
+          <div class="timeline-title">🍕 Lunch at Grateful Head Pizza</div>
+          <div class="timeline-desc">Hochatown landmark. Specialty veg pizzas, salads, halal-options none guaranteed (mostly veg + cheese pies anyway). Call ahead for 17 OR grab takeaway back to cabin.</div>
+          <span class="timeline-tag tag-veg">Veg ✓</span>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">3–5 PM</div>
+        <div class="timeline-content">
+          <div class="timeline-title">🏞️ Beavers Bend State Park · OR · cabin chill</div>
+          <div class="timeline-desc">Optional easy hike at the State Park (3 voters). OR everyone stays at cabin — pool/hot tub, kids play, adults nap or play cards. Sunday should NOT be hectic.</div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">6 PM</div>
+        <div class="timeline-content">
+          <div class="timeline-title">📸 Group photo session at sunset</div>
+          <div class="timeline-desc">Outside the cabin or at the lake overlook. THIS IS THE TRIP. Get pictures with Abhishek & Lavanya. We won't get this group together again for a long time.</div>
+          <span class="timeline-tag tag-must">Must do</span>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">7 PM</div>
+        <div class="timeline-content">
+          <div class="timeline-title">🍽️ Anniversary dinner — Abhishek & Lavanya night</div>
+          <div class="timeline-desc">Either at cabin (round 2 of BBQ — finish all the marinated stuff) OR Pressa Italia (upscale Italian, call ahead, will do veg pasta). If cabin: pair BBQ with ready-to-eat sabji + chapatis + rice we packed. Speeches, stories, embarrassing photos of Abhishek.</div>
+          <span class="timeline-tag tag-veg">Veg ✓</span>
+          <span class="timeline-tag tag-halal">Halal ✓</span>
+          <span class="timeline-tag tag-must">Anniversary</span>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">9 PM onwards</div>
+        <div class="timeline-content">
+          <div class="timeline-title">🎤 Cabin night · games + anniversary vibes</div>
+          <div class="timeline-desc">More games — antakshari, charades, mafia. Anyone who wants to do a "favorite Abhishek & Lavanya memory" round, this is the night. Hookah and drinks for whoever's having them. Earlier night than Saturday — Monday is a driving day.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MONDAY -->
+  <div class="section">
+    <div class="section-title">Day 4 — Drive Home · Monday, March 8, 2027</div>
+    <div class="day-header day-monday">
+      <h2>🏠 Monday <span class="date-pill">Mar 8, 2027</span></h2>
+      <span class="day-tagline">Pack up · long drive back</span>
+    </div>
+    <div class="day-body">
+      <div class="timeline-item">
+        <div class="timeline-time">7:30–9 AM</div>
+        <div class="timeline-content">
+          <div class="timeline-title">Big cabin breakfast</div>
+          <div class="timeline-desc">Use up leftovers — eggs, parathas, last of the chai. Quick clean-up: dishes in dishwasher, trash to dumpster, towels in laundry basket.</div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">9:30 AM</div>
+        <div class="timeline-content">
+          <div class="timeline-title">Pack cars · final hugs · group photo</div>
+          <div class="timeline-desc">Don't forget anything in the fridge — host throws it out. Charge phones, fill water bottles. Last group photo on the deck.</div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">10–11 AM</div>
+        <div class="timeline-content">
+          <div class="timeline-title">🚗 Departure (CHECKOUT IS 10 AM — STRICT)</div>
+          <div class="timeline-desc">Houston group: out by 10:30, lunch stop in Texarkana, home by 6 PM. Dallas group: home by 3 PM. Clarksville group: long drive — fuel up, plan lunch in Memphis area.</div>
+          <span class="timeline-tag tag-must">Strict 10 AM</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOD STRATEGY -->
+  <div class="section">
+    <div class="section-title">Food Strategy</div>
+    <div class="card">
+      <h2>🍽️ Eating well with 17 people</h2>
+      <p style="color:#5f5e5a;"><strong>Plan:</strong> No actual cooking at the cabin — just BBQ on the outdoor grill. For all other meals: brunch/lunch out + ready-to-eat backups from Houston for whenever anyone gets hungry. Easy, low-effort, kid-friendly.</p>
+
+      <h3>🔥 BBQ nights — outdoor grill only</h3>
+      <div class="food-grid">
+        <div class="food-card">
+          <div class="food-name">Saturday Night BBQ</div>
+          <div class="food-detail">Pre-marinate everything in Houston, pack in coolers. Paneer tikka · malai chaap · tandoori veggies · halal chicken/lamb kebabs · corn on the cob. Grill outside, eat on the deck.</div>
+        </div>
+        <div class="food-card">
+          <div class="food-name">Sunday Anniversary BBQ</div>
+          <div class="food-detail">Round 2 — finish whatever's left. Pair with ready-to-eat sabji + chapatis we packed. Add gulab jamun / rasmalai for dessert. Speeches & stories around the fire pit.</div>
+        </div>
+      </div>
+
+      <h3>🍱 Gaurav's ready-to-eat backup pack (for hungry moments)</h3>
+      <p style="font-size:13px; color:#5f5e5a; margin-bottom:10px;">For kids who get hungry between meals, anyone who skipped a meal, late-night cravings, breakfast quick fixes. Boil rice in 15 mins, microwave a sabji pack, done.</p>
+      <div class="packing-grid">
+        <div class="pack-item">Raw basmati rice 2–3 kg</div>
+        <div class="pack-item">Ready-to-eat chapatis (2 packs)</div>
+        <div class="pack-item">Ready-to-eat sabji (MTR / Haldiram / Gits)</div>
+        <div class="pack-item">Dal makhani RTE pouches</div>
+        <div class="pack-item">Rajma / chole RTE pouches</div>
+        <div class="pack-item">Paneer butter masala RTE</div>
+        <div class="pack-item">Instant maggi (kids love it)</div>
+        <div class="pack-item">Poha mix / upma mix</div>
+        <div class="pack-item">Pickle (lime/mango)</div>
+        <div class="pack-item">Papad (microwave-ready)</div>
+        <div class="pack-item">Curd / yogurt cups</div>
+        <div class="pack-item">Mint-coriander chutney</div>
+      </div>
+
+      <h3>🥪 Snacks & drinks (for the road + cabin)</h3>
+      <div class="packing-grid">
+        <div class="pack-item">Chips · Lays · Kurkure</div>
+        <div class="pack-item">Biscuits (Parle-G, Marie)</div>
+        <div class="pack-item">Bhujia / namkeen</div>
+        <div class="pack-item">Fruits (apples, bananas, grapes)</div>
+        <div class="pack-item">Granola bars (for kids)</div>
+        <div class="pack-item">Juice boxes (kids)</div>
+        <div class="pack-item">Bottled water (case)</div>
+        <div class="pack-item">Chai tea bags + milk</div>
+        <div class="pack-item">Instant coffee / filter coffee</div>
+        <div class="pack-item">Sugar · salt · oil (small bottles)</div>
+        <div class="pack-item">Gulab jamun tin / rasmalai</div>
+        <div class="pack-item">Marshmallows for s'mores</div>
+      </div>
+
+      <h3>🥡 Eating out — brunch/lunch only (veg + halal-friendly)</h3>
+      <div class="food-grid">
+        <div class="food-card">
+          <div class="food-name">Saturday Brunch · Papa Poblanos</div>
+          <div class="food-detail">Mexican, big group OK, veg-friendly. Bean burritos, veggie fajitas, chiles rellenos, huevos rancheros. Halal: meat not certified, stick to veg.</div>
+        </div>
+        <div class="food-card">
+          <div class="food-name">Friday Dinner · Taste of India (Texarkana)</div>
+          <div class="food-detail">On the way from Houston. Full Indian menu, veg + non-veg, attached Indian grocery store. ~1hr 50 min from cabin.</div>
+        </div>
+        <div class="food-card">
+          <div class="food-name">Sunday Lunch · Grateful Head Pizza</div>
+          <div class="food-detail">Hochatown landmark. Loaded veg pizzas, salads. Mostly cheese-based — halal-safe by default. Call ahead for 17 or do takeout.</div>
+        </div>
+        <div class="food-card">
+          <div class="food-name">Backup · Brick & Bread Cafe</div>
+          <div class="food-detail">Cafe brunch. Veg flatbreads, salads, soups. If Papa Poblanos is too packed.</div>
+        </div>
+      </div>
+
+      <h3>🛒 Pre-trip BBQ prep (Houston Indian grocery)</h3>
+      <p style="font-size:13px; color:#5f5e5a; margin-bottom:10px;">Marinate everything at home 1-2 days before, pack in ziplock bags in coolers. Saves 100% of cabin work.</p>
+      <div class="packing-grid">
+        <div class="pack-item">Paneer 3 lbs (cubed + marinated)</div>
+        <div class="pack-item">Halal chicken (marinated tandoori)</div>
+        <div class="pack-item">Halal lamb / mutton kebabs</div>
+        <div class="pack-item">Soya chaap (frozen, marinated)</div>
+        <div class="pack-item">Bell peppers · onions · mushrooms</div>
+        <div class="pack-item">Corn on the cob</div>
+        <div class="pack-item">Tandoori + chaat masala</div>
+        <div class="pack-item">Ginger-garlic paste</div>
+        <div class="pack-item">Hung curd / Greek yogurt</div>
+        <div class="pack-item">Mustard oil for marinade</div>
+        <div class="pack-item">Lemons (5-6)</div>
+        <div class="pack-item">Skewers (metal or bamboo)</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CABIN ACTIVITIES -->
+  <div class="section">
+    <div class="section-title">At the Cabin</div>
+    <div class="card">
+      <h2>🎲 Games & activities for 17</h2>
+      <p style="color:#5f5e5a;">Sturdy backup plans for evenings + any time the weather turns or someone wants to chill.</p>
+
+      <div class="food-grid">
+        <div class="food-card">
+          <div class="food-name">🃏 Group games</div>
+          <div class="food-detail">UNO · Mafia/Werewolf · Antakshari · Charades · Pictionary · Card games (rummy, teen patti for adults)</div>
+        </div>
+        <div class="food-card">
+          <div class="food-name">🎵 Music + dance</div>
+          <div class="food-detail">Bluetooth speaker, Bollywood playlist ready. Open floor for impromptu dancing. Kids love it, aunties join in.</div>
+        </div>
+        <div class="food-card">
+          <div class="food-name">🎤 Memory share</div>
+          <div class="food-detail">Sunday night anniversary toast: each person shares one favorite memory of Abhishek & Lavanya. Bring tissues.</div>
+        </div>
+        <div class="food-card">
+          <div class="food-name">📸 Photo wall</div>
+          <div class="food-detail">Print out 10-15 old photos of Abhishek from over the years. Stick to fridge. Comedy gold.</div>
+        </div>
+        <div class="food-card">
+          <div class="food-name">🛁 Hot tub + fire pit</div>
+          <div class="food-detail">Open all weekend. Hot tub seats ~6, fire pit fits 10. Rotate groups.</div>
+        </div>
+        <div class="food-card">
+          <div class="food-name">🌟 Star gazing</div>
+          <div class="food-detail">Hochatown skies are dark — incredible Milky Way views. Late Saturday night, take blankets out.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PACKING LIST -->
+  <div class="section">
+    <div class="section-title">Packing Essentials</div>
+    <div class="card">
+      <h2>🎒 Don't forget</h2>
+      <div class="packing-grid">
+        <div class="pack-item">Comfortable walking shoes</div>
+        <div class="pack-item">Swimsuit for hot tub</div>
+        <div class="pack-item">Light jacket (cool nights)</div>
+        <div class="pack-item">Bug spray</div>
+        <div class="pack-item">Sunscreen</div>
+        <div class="pack-item">Water bottles</div>
+        <div class="pack-item">Power banks</div>
+        <div class="pack-item">Cards/board games</div>
+        <div class="pack-item">Bluetooth speaker</div>
+        <div class="pack-item">Phone chargers</div>
+        <div class="pack-item">Camera/GoPro</div>
+        <div class="pack-item">Kids: snacks, toys, tablet</div>
+        <div class="pack-item">Drinks (Evergreen Liquor nearby if forgotten)</div>
+        <div class="pack-item">Hookah + coals</div>
+        <div class="pack-item">Coolers + ice packs</div>
+        <div class="pack-item">Pre-marinated BBQ items</div>
+        <div class="pack-item">Ready-to-eat backups (see food)</div>
+        <div class="pack-item">Skewers (metal preferred)</div>
+        <div class="pack-item">Trash bags / paper plates / cups</div>
+        <div class="pack-item">Aluminium foil + ziplock bags</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BOOKINGS -->
+  <div class="section">
+    <div class="section-title">Lock These In</div>
+    <div class="card">
+      <h2>📞 Bookings & calls to make this week</h2>
+      <div class="food-grid">
+        <div class="food-card">
+          <div class="food-name">Rugaru Ziplining</div>
+          <div class="food-detail">(580) 494-2947 · Book Saturday 3 PM slot for adventure group · weekend slots fill fast</div>
+        </div>
+        <div class="food-card">
+          <div class="food-name">Beavers Bend Depot</div>
+          <div class="food-detail">(580) 494-6613 · Call ahead for group of 10+ Sunday 11 AM</div>
+        </div>
+        <div class="food-card">
+          <div class="food-name">Cabin late checkout?</div>
+          <div class="food-detail">Judy: (580) 407-4007 · Confirm if you want to leave after 10 AM Monday — may be a fee</div>
+        </div>
+        <div class="food-card">
+          <div class="food-name">Pressa Italia (backup)</div>
+          <div class="food-detail">If Sunday dinner is restaurant-based, reserve table for 17 — they need notice</div>
+        </div>
+        <div class="food-card">
+          <div class="food-name">Grateful Head Pizza</div>
+          <div class="food-detail">Sunday lunch — call ahead for 17 people or do takeout</div>
+        </div>
+        <div class="food-card">
+          <div class="food-name">Group WhatsApp pin</div>
+          <div class="food-detail">Share this page link · pin live location · share cabin address with all 3 driving groups</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FAREWELL CLOSE -->
+  <div class="section">
+    <div class="card" style="background: linear-gradient(135deg, #1e3a5f 0%, #3b6d11 100%); color:white;">
+      <h2 style="color:white;">🎉 Why this trip matters</h2>
+      <p style="color: rgba(255,255,255,0.95); font-size:15px; line-height:1.7;">
+        Abhishek & Lavanya have been part of our Houston circle for years, and this is the anniversary they deserve — Clarksville, Dallas, Houston families converging in one cabin in the Oklahoma woods, just to celebrate them together.
+      </p>
+      <p style="color: rgba(255,255,255,0.95); font-size:15px; line-height:1.7; margin-top:12px;">
+        So the plan isn't about packing in activities. It's about being together. The Maze is fun but the photos, the BBQ, the late-night games, the anniversary toasts — that's what they'll remember for years. Let's do it right. 🌲❤️
+      </p>
+    </div>
+  </div>
+
+  <div class="footer">
+    <p>Built with love for <strong>Abhishek & Lavanya</strong> · See you in Hochatown, March 5 🌲</p>
+    <p style="margin-top:6px;">Questions? Ping Gaurav on WhatsApp</p>
+  </div>
+
+</div>
+
+</body>
+</html>
